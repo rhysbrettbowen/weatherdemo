@@ -1,9 +1,9 @@
 goog.provide('WeatherDemo.control.List');
 
 goog.require('G');
-goog.require('mvc.Control');
 goog.require('WeatherDemo.control.Simple');
 goog.require('WeatherDemo.template.List');
+goog.require('mvc.Control');
 
 
 
@@ -30,7 +30,7 @@ WeatherDemo.control.List.Sort = {
   'TEMP': function(a, b) {
     return b.get('temp') - a.get('temp');
   }
-}
+};
 
 
 /**

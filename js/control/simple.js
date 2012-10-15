@@ -1,7 +1,7 @@
 goog.provide('WeatherDemo.control.Simple');
 
-goog.require('mvc.Control');
 goog.require('WeatherDemo.Mediator');
+goog.require('mvc.Control');
 
 
 

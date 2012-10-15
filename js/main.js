@@ -2,15 +2,18 @@ goog.provide('WeatherDemo.main');
 
 
 goog.require('G');
-goog.require('mvc.Collection');
-goog.require('WeatherDemo.control.List');
-goog.require('WeatherDemo.model.City');
-goog.require('WeatherDemo.control.Single');
 goog.require('WeatherDemo.Mediator');
 goog.require('WeatherDemo.Store');
+goog.require('WeatherDemo.control.List');
+goog.require('WeatherDemo.control.Single');
+goog.require('WeatherDemo.model.City');
+goog.require('goog.dom.query');
+goog.require('mvc.Collection');
 
 
 WeatherDemo.main = function() {
+
+  $$.setSelectorEngine(goog.dom.query);
 
   var cities = new mvc.Collection({
     'modelType': WeatherDemo.model.City
@@ -25,7 +28,7 @@ WeatherDemo.main = function() {
   });
 
   var single = new WeatherDemo.control.Single(cities.at(0));
-  single.render(document.body);
+  single.decorate($('.single')[0]);
 
   WeatherDemo.Mediator.on('chooseCity', function(id) {
     single.setModel(WeatherDemo.Store.get(id));
@@ -41,7 +44,20 @@ WeatherDemo.main = function() {
 
   var cityList = new WeatherDemo.control.List(cities);
   cityList.render(document.body);
-  
+
+  $('form').on('submit', function(e) {
+    var name = $('form .city').val();
+    var temp = $('form .temp').val();
+    var model = WeatherDemo.Store.get(name);
+    model.set({
+      'id': name,
+      'city': name,
+      'temp': temp
+    });
+    cities.add(model);
+    e.preventDefault();
+  });
+
 };
 goog.exportSymbol('WeatherDemo.main', WeatherDemo.main);
 

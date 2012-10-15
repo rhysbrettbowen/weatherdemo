@@ -1,8 +1,7 @@
 goog.provide('WeatherDemo.control.Single');
 
-goog.require('mvc.Control');
-goog.require('WeatherDemo.template.Single')
 goog.require('goog.events.KeyCodes');
+goog.require('mvc.Control');
 
 
 
@@ -20,9 +19,18 @@ goog.inherits(WeatherDemo.control.Single, mvc.Control);
 /**
  * @inheritDoc
  */
-WeatherDemo.control.Single.prototype.createDom = function() {
-  var el = $(WeatherDemo.template.Single.main(null));
-  this.setElementInternal(el[0]);
+WeatherDemo.control.Single.prototype.canDecorate = function(el) {
+  return $('.city', el).size() &&
+    $('.temp', el).size() &&
+    $('.celcius', el).size();
+};
+
+
+/**
+ * @inheritDoc
+ */
+WeatherDemo.control.Single.prototype.decorateInternal = function(el) {
+  return goog.base(this, 'decorateInternal', el);
 };
 
 

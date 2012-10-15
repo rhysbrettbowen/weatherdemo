@@ -1,8 +1,8 @@
 goog.provide('WeatherDemo.model.City');
 
 goog.require('G');
-goog.require('mvc.Model');
 goog.require('mvc.LocalSync');
+goog.require('mvc.Model');
 
 
 
@@ -14,8 +14,7 @@ goog.require('mvc.LocalSync');
 WeatherDemo.model.City = function(opt_options) {
   opt_options = opt_options || {};
   GG.extend(opt_options, {
-    'schema': WeatherDemo.model.City.Schema,
-    'sync': mvc.LocalSync
+    'schema': WeatherDemo.model.City.Schema
   });
   goog.base(this, opt_options);
 };
@@ -27,11 +26,7 @@ WeatherDemo.model.City.Schema = {
     get: function(temp) {
       return 5 / 9 * (temp - 32);
     },
-    /**
-     * @this {mvc.Model}
-     * @param {number} num temperature
-     * @param {boolean} opt_silent
-     */
+    /** @this {mvc.Model} */
     set: function(num, opt_silent) {
       this.set('temp', num * 9 / 5 + 32, opt_silent);
     },

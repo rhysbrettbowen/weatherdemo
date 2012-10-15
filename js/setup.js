@@ -1,9 +1,9 @@
 goog.provide('WeatherDemo.Mediator');
 goog.provide('WeatherDemo.Store');
 
-goog.require('mvc.Store');
-goog.require('mvc.Mediator');
 goog.require('WeatherDemo.model.City');
+goog.require('mvc.Mediator');
+goog.require('mvc.Store');
 
 
 WeatherDemo.Mediator = new mvc.Mediator();

@@ -1,0 +1,1 @@
+Demo for http://rhysbrettbowen.gitub.com/closure_from_jquery
